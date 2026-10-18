@@ -1,11 +1,13 @@
 services:
   falkordb:
-    image: falkordb/falkordb:latest   # pin a specific version before submitting
+    image: falkordb/falkordb:latest
+    container_name: graphops-falkordb
     ports:
-      - "6379:6379"   # database (Redis protocol)
-      - "3000:3000"   # FalkorDB Browser UI
+      - "6379:6379"  # FalkorDB database
+      - "3000:3000"  # FalkorDB Browser UI
     volumes:
       - falkordb_data:/var/lib/falkordb/data
+    restart: unless-stopped
 
 volumes:
   falkordb_data:
